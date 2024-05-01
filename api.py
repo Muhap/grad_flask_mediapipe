@@ -34,8 +34,7 @@ def process_frame():
         sequence.append(keypoints)
 
     if len(sequence) == 30:
-        sequence_json = [keypoints.tolist() for keypoints in sequence]
-        return jsonify({'sequence': sequence_json})
+        return jsonify({'sequence': np.expand_dims(sequence, axis=0).tolist()})
     else:
         return jsonify({'message': 'Keypoints collected but sequence length is less than 30'})
 
